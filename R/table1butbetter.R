@@ -649,8 +649,7 @@ render.strat.default <- function(label, n, transpose=F) {
 #' cat(table.rows(LETTERS[1:3], "Headings", th=TRUE))
 #' @keywords utilities
 #' @export
-table.rows <- function(x, row.labels=rownames(x), th=FALSE, class=NULL, rowlabelclass="rowlabel", firstrowclass="firstrow", lastrowclass="lastrow", hide_row_labels=FALSE, ...) {
-    if (hide_row_labels) row.labels <- NULL
+table.rows <- function(x, row.labels=rownames(x), th=FALSE, class=NULL, rowlabelclass="rowlabel", firstrowclass="firstrow", lastrowclass="lastrow", ...) {
     td <- table.data(x=x, row.labels=row.labels, th=th, class=class, rowlabelclass=rowlabelclass, firstrowclass=firstrowclass, lastrowclass=lastrowclass, ...)
     tr <- paste("<tr>\n", td, "\n</tr>\n", sep="")
     paste(tr, sep="", collapse="")
@@ -658,9 +657,8 @@ table.rows <- function(x, row.labels=rownames(x), th=FALSE, class=NULL, rowlabel
 
 #' @describeIn table.rows Convert to HTML table data (cells).
 #' @export
-table.data <- function(x, row.labels=rownames(x), th=FALSE, class=NULL, rowlabelclass="rowlabel", firstrowclass="firstrow", lastrowclass="lastrow", hide_row_labels=FALSE, ...) {
+table.data <- function(x, row.labels=rownames(x), th=FALSE, class=NULL, rowlabelclass="rowlabel", firstrowclass="firstrow", lastrowclass="lastrow", ...) {
     tag <- ifelse(th, "th", "td")
-    if (hide_row_labels) row.labels <- NULL
     rl <- row.labels  # Make sure it gets evaluated early for default arg
     if (is.data.frame(x)) {
         x <- sapply(x, as.character)
@@ -842,6 +840,7 @@ has.units <- function(x) {
 #' \code{\link{render.strat.default}} for an example.
 #' @param extra.col An optional names list of functions that produce extra columns in the table (see Details).
 #' @param extra.col.pos An optional integer vector given the positions of extra columns (see Details).
+#' @param hiderowlabels Logical. Should the row labels be hidden? (default \code{FALSE})
 #' @param ... Further arguments, passed to \code{render}.
 #'
 #' @return An object of class "table1butbetter".
@@ -907,7 +906,7 @@ table1butbetter <- function(x, ...) {
 
 #' @describeIn table1butbetter The default interface, where \code{x} is a \code{data.frame}.
 #' @export
-table1butbetter.default <- function(x, labels, groupspan=NULL, rowlabelhead="", transpose=FALSE, topclass="Rtable1", footnote=NULL, caption=NULL, render=render.default, render.strat=render.strat.default, extra.col=NULL, extra.col.pos=NULL, hide_row_labels=FALSE, ...) {
+table1butbetter.default <- function(x, labels, groupspan=NULL, rowlabelhead="", transpose=FALSE, topclass="Rtable1", footnote=NULL, caption=NULL, render=render.default, render.strat=render.strat.default, extra.col=NULL, extra.col.pos=NULL, hiderowlabels=FALSE, ...) {
     .table1butbetter.internal(
         x             = x,
         labels        = labels,
@@ -921,11 +920,11 @@ table1butbetter.default <- function(x, labels, groupspan=NULL, rowlabelhead="", 
         render.strat  = render.strat,
         extra.col     = extra.col,
         extra.col.pos = extra.col.pos,
-        hide_row_labels = hide_row_labels,
+        hiderowlabels = hiderowlabels,
         ...)
 }
 
-.table1butbetter.internal <- function(x, labels, groupspan=NULL, rowlabelhead="", transpose=FALSE, topclass="Rtable1", footnote=NULL, caption=NULL, render=render.default, render.strat=render.strat.default, extra.col=NULL, extra.col.pos=NULL, hide_row_labels=FALSE, ...) {
+.table1butbetter.internal <- function(x, labels, groupspan=NULL, rowlabelhead="", transpose=FALSE, topclass="Rtable1", footnote=NULL, caption=NULL, render=render.default, render.strat=render.strat.default, extra.col=NULL, extra.col.pos=NULL, hiderowlabels=FALSE, ...) {
     if (is.null(labels$strata)) {
         labels$strata <- names(x)
     }
@@ -1040,7 +1039,7 @@ table1butbetter.default <- function(x, labels, groupspan=NULL, rowlabelhead="", 
         caption      = caption,
         footnote     = footnote,
         render.strat = render.strat,
-        hide_row_labels = hide_row_labels)
+        hiderowlabels = hiderowlabels)
 
     update_html(structure("", obj=obj))
 }
@@ -1102,10 +1101,10 @@ update_html <- function(x) {
         x <- paste0(
             sprintf('<table%s>%s\n<thead>\n', topclass, caption),
             thead0,
-            table.rows(thead, row.labels=rowlabelhead, th=T, hide_row_labels = hide_row_labels),
+            table.rows(thead, row.labels=rowlabelhead, th=T),
             tfoot,
             '</thead>\n<tbody>\n',
-            paste(sapply(contents, table.rows, hide_row_labels = hide_row_labels), collapse=""),
+            paste(sapply(contents, table.rows), collapse=""),
             '</tbody>\n</table>\n')
 
         structure(x, class=c("table1butbetter", "html", "character"), html=TRUE, obj=obj)
@@ -1221,7 +1220,7 @@ t1kable <- function(x, booktabs=TRUE, ..., format) {
     }
     obj <- attr(x, "obj")
     with(obj, {
-        rlh <- if (is.null(rowlabelhead) || rowlabelhead=="") "\U{00A0}" else rowlabelhead
+        rlh <- if (is.null(rowlabelhead) || rowlabelhead == "" || hiderowlabels) "\U{00A0}" else rowlabelhead
         i <- lapply(contents, function(y) {
             if (all(y[1,, drop=T] == "")) {
                 nrow(y) - 1
@@ -1232,7 +1231,11 @@ t1kable <- function(x, booktabs=TRUE, ..., format) {
         z <- lapply(contents, function(y) {
             if (all(y[1,, drop=T] == "")) {
                 y <- as.data.frame(y[-1,, drop=F], stringsAsFactors=F)
-                y2 <- data.frame(x=rownames(y), stringsAsFactors=F)
+                if (hiderowlabels) {
+                    y2 <- data.frame(x=rep("", nrow(y)), stringsAsFactors=F)
+                } else {
+                    y2 <- data.frame(x=rownames(y), stringsAsFactors=F)
+                }
             } else {
                 y2 <- data.frame(x="", stringsAsFactors=F)
             }
@@ -1242,24 +1245,25 @@ t1kable <- function(x, booktabs=TRUE, ..., format) {
         names(i) <- labels$variables
         df <- do.call(rbind, z)
 
-        # Try to create a multiline header but does not work
-        #if (format == "html") {
-        #    cn <- c(rlh, sprintf(ifelse(is.na(headings[2,]), "%s", "%s<br/>(N=%s)"), headings[1,], headings[2,]))
-        #} else {
-        #    cn <- c(rlh, sprintf(ifelse(is.na(headings[2,]), "%s", "%s\n(N=%s)"), headings[1,], headings[2,]))
-        #}
-        #colnames(df) <- cn
-        #if (format == "latex") {
-        #    cn <- kableExtra::linebreak(cn, align="c")
-        #}
-
         # Put the (N=xx) as first row of the table
         df <- rbind(c("", ifelse(is.na(headings[2,]), "", sprintf("(N=%s)", headings[2,]))), df)
-        cn <- colnames(df) <- c(rlh, headings[1,])
+        if (hiderowlabels) {
+            cn <- colnames(df) <- c("", headings[1,])
+        } else {
+            cn <- colnames(df) <- c(rlh, headings[1,])
+        }
         rownames(df) <- NULL
+
         out <- kableExtra::kbl(df, format=format, col.names=cn, row.names=F, escape=T, booktabs=booktabs, caption=caption, ...)
-        out <- kableExtra::pack_rows(out, index=c(" "=1, i))
-        #out <- kableExtra::pack_rows(out, index=i)
+
+        idx = c(" "=1, i)
+
+        if (hiderowlabels) {
+            names(idx) <- rep("\U{00A0}", length(idx))
+        }
+        
+        out <- kableExtra::pack_rows(out, index=idx)
+
         if (!is.null(groupspan)) {
             groupspan <- setNames(groupspan, labels$groups)
             zzz <- ncol(df) - sum(groupspan) - 1
