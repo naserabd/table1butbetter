@@ -650,6 +650,7 @@ render.strat.default <- function(label, n, transpose=F) {
 #' @keywords utilities
 #' @export
 table.rows <- function(x, row.labels=rownames(x), th=FALSE, class=NULL, rowlabelclass="rowlabel", firstrowclass="firstrow", lastrowclass="lastrow", ...) {
+    if (is.null(row.labels)) row.labels <- ""
     td <- table.data(x=x, row.labels=row.labels, th=th, class=class, rowlabelclass=rowlabelclass, firstrowclass=firstrowclass, lastrowclass=lastrowclass, ...)
     tr <- paste("<tr>\n", td, "\n</tr>\n", sep="")
     paste(tr, sep="", collapse="")
@@ -1220,7 +1221,7 @@ t1kable <- function(x, booktabs=TRUE, ..., format) {
     }
     obj <- attr(x, "obj")
     with(obj, {
-        rlh <- if (is.null(rowlabelhead) || rowlabelhead == "" || hiderowlabels) "\U{00A0}" else rowlabelhead
+        rlh <- if (is.null(rowlabelhead) || rowlabelhead==""  || hiderowlabels) " " else rowlabelhead
         i <- lapply(contents, function(y) {
             if (all(y[1,, drop=T] == "")) {
                 nrow(y) - 1
@@ -1259,7 +1260,7 @@ t1kable <- function(x, booktabs=TRUE, ..., format) {
         idx = c(" "=1, i)
 
         if (hiderowlabels) {
-            names(idx) <- rep("\U{00A0}", length(idx))
+            names(idx) <- c(" ", rep("\U{00A0}", length(idx)-1))
         }
         
         out <- kableExtra::pack_rows(out, index=idx)
