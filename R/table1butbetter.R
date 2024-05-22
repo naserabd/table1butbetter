@@ -907,7 +907,7 @@ table1butbetter <- function(x, ...) {
 
 #' @describeIn table1butbetter The default interface, where \code{x} is a \code{data.frame}.
 #' @export
-table1butbetter.default <- function(x, labels, groupspan=NULL, rowlabelhead="", transpose=FALSE, topclass="Rtable1", footnote=NULL, caption=NULL, render=render.default, render.strat=render.strat.default, extra.col=NULL, extra.col.pos=NULL, ...) {
+table1butbetter.default <- function(x, labels, groupspan=NULL, rowlabelhead="", transpose=FALSE, topclass="Rtable1", footnote=NULL, caption=NULL, render=render.default, render.strat=render.strat.default, extra.col=NULL, extra.col.pos=NULL, hide_row_labels=FALSE, ...) {
     .table1butbetter.internal(
         x             = x,
         labels        = labels,
@@ -920,10 +920,12 @@ table1butbetter.default <- function(x, labels, groupspan=NULL, rowlabelhead="", 
         render        = render,
         render.strat  = render.strat,
         extra.col     = extra.col,
-        extra.col.pos = extra.col.pos, ...)
+        extra.col.pos = extra.col.pos,
+        hide_row_labels = hide_row_labels,
+        ...)
 }
 
-.table1butbetter.internal <- function(x, labels, groupspan=NULL, rowlabelhead="", transpose=FALSE, topclass="Rtable1", footnote=NULL, caption=NULL, render=render.default, render.strat=render.strat.default, extra.col=NULL, extra.col.pos=NULL, ...) {
+.table1butbetter.internal <- function(x, labels, groupspan=NULL, rowlabelhead="", transpose=FALSE, topclass="Rtable1", footnote=NULL, caption=NULL, render=render.default, render.strat=render.strat.default, extra.col=NULL, extra.col.pos=NULL, hide_row_labels=FALSE, ...) {
     if (is.null(labels$strata)) {
         labels$strata <- names(x)
     }
@@ -1037,9 +1039,10 @@ table1butbetter.default <- function(x, labels, groupspan=NULL, rowlabelhead="", 
         rowlabelhead = rowlabelhead,
         caption      = caption,
         footnote     = footnote,
-        render.strat = render.strat)
+        render.strat = render.strat,
+        hide_row_labels = hide_row_labels)
 
-    update_html(structure("", obj=obj), ...)
+    update_html(structure("", obj=obj))
 }
 
 #' Update HTML.
@@ -1051,7 +1054,7 @@ table1butbetter.default <- function(x, labels, groupspan=NULL, rowlabelhead="", 
 #' @param x An object returned by \code{\link{table1butbetter}}.
 #' @return An object of class "table1butbetter" which contains the updated HTML.
 #' @export
-update_html <- function(x, ...) {
+update_html <- function(x) {
     obj <- attr(x, "obj")
     with(obj, {
         if (transpose) {
@@ -1099,10 +1102,10 @@ update_html <- function(x, ...) {
         x <- paste0(
             sprintf('<table%s>%s\n<thead>\n', topclass, caption),
             thead0,
-            table.rows(thead, row.labels=rowlabelhead, th=T, ...),
+            table.rows(thead, row.labels=rowlabelhead, th=T, hide_row_labels = hide_row_labels),
             tfoot,
             '</thead>\n<tbody>\n',
-            paste(sapply(contents, table.rows), collapse=""),
+            paste(sapply(contents, table.rows, hide_row_labels = hide_row_labels), collapse=""),
             '</tbody>\n</table>\n')
 
         structure(x, class=c("table1butbetter", "html", "character"), html=TRUE, obj=obj)
