@@ -1039,7 +1039,7 @@ table1butbetter.default <- function(x, labels, groupspan=NULL, rowlabelhead="", 
         footnote     = footnote,
         render.strat = render.strat)
 
-    update_html(structure("", obj=obj))
+    update_html(structure("", obj=obj), ...)
 }
 
 #' Update HTML.
@@ -1051,7 +1051,7 @@ table1butbetter.default <- function(x, labels, groupspan=NULL, rowlabelhead="", 
 #' @param x An object returned by \code{\link{table1butbetter}}.
 #' @return An object of class "table1butbetter" which contains the updated HTML.
 #' @export
-update_html <- function(x) {
+update_html <- function(x, ...) {
     obj <- attr(x, "obj")
     with(obj, {
         if (transpose) {
@@ -1099,7 +1099,7 @@ update_html <- function(x) {
         x <- paste0(
             sprintf('<table%s>%s\n<thead>\n', topclass, caption),
             thead0,
-            table.rows(thead, row.labels=rowlabelhead, th=T),
+            table.rows(thead, row.labels=rowlabelhead, th=T, ...),
             tfoot,
             '</thead>\n<tbody>\n',
             paste(sapply(contents, table.rows), collapse=""),
