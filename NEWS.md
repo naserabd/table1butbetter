@@ -1,4 +1,4 @@
-# table1 1.4.4
+# table1butbetter 1.4.4
 
 * Fix extra columns with column groups (#106).
 
@@ -6,9 +6,9 @@
 
 * Handle `NA` in `parse.abbrev.render.code()`.
 
-# table1 1.4.3
+# table1butbetter 1.4.3
 
-* Change space in `as.data.frame.table1()` (#60).
+* Change space in `as.data.frame.table1butbetter()` (#60).
 
 * Add `NMISS` to output of `stats.default()` for categorical variables.
 
@@ -30,7 +30,7 @@
 
 * Missing values in stratification variable(s) raises and error (#80).
 
-# table1 1.4.2
+# table1butbetter 1.4.2
 
 * Add option `rounding.fn` to `stats.apply.rounding()` to allow changing the
   rounding behaviour (thanks to Niels Hagenbuch for the suggestion)
@@ -43,15 +43,15 @@
 
 * Fixed issue #53.
 
-# table1 1.4.1
+# table1butbetter 1.4.1
 
 * Fix a warning in one of the examples.
 
-# table1 1.4
+# table1butbetter 1.4
 
-* Headline feature: ability to convert `table1` output to a `data.frame`,
+* Headline feature: ability to convert `table1butbetter` output to a `data.frame`,
   `flextable` or `kableExtra` object (though with some limitations). As a
-  direct consequence, `table1` can now be used within LaTeX documents, and
+  direct consequence, `table1butbetter` can now be used within LaTeX documents, and
   there is a new vignette to document this feature. Output to .docx is also
   possible with this feature (through pandoc or `flextable`).
 
@@ -64,7 +64,7 @@
 * New `setLabel()` function provides an alternative syntax for setting labels
   (useful for setting a label inside a formula).
 
-# table1 1.3
+# table1butbetter 1.3
 
 * The headline feature is the `extra.col` option, which gives a flexible way to
   add extra columns (e.g. P-values, SMD, ...) to the table (thanks to Matt
@@ -74,14 +74,14 @@
 
 * General improvements to the documentation.
 
-# table1 1.2.1
+# table1butbetter 1.2.1
 
 * Fixed issue that was causing vignette build to fail (due to changes made to
   the MatchIt package's lalonde data set).
 
 * Allow multiple footnotes.
 
-# table1 1.2
+# table1butbetter 1.2
 
 * Added `caption` argument to generate a caption for the table.
 
@@ -103,7 +103,7 @@
 
 * Added function `t1read`.
 
-# table1 1.1
+# table1butbetter 1.1
 
 * Added `quantile.type` argument to `stats.default` to allow selecting which
   quantile type is computed.
@@ -113,15 +113,15 @@
 
 * `droplevels` now works properly with nested grouping.
 
-* `table1` now returns a character string (containing HTML). A print method
+* `table1butbetter` now returns a character string (containing HTML). A print method
   handles the printing. There is no longer a need to use `capture.output` to
-  embed `table1` in a shiny app.
+  embed `table1butbetter` in a shiny app.
 
 * Removed `standalone` option as it is no longer needed.
 
 * Use `htmltools` functionality to print.
 
-* Preview in RStudio notebook now works ([issue #7](https://github.com/benjaminrich/table1/issues/7)).
+* Preview in RStudio notebook now works ([issue #7](https://github.com/benjaminrich/table1butbetter/issues/7)).
 
 * Added `knit_print` method. No need to specify `results="asis"` chunk option
   anymore when knitting.
@@ -145,6 +145,6 @@
 * The vignette has been expanded with new examples and the documentation
   improved.
 
-# table1 1.0
+# table1butbetter 1.0
 
-* This is the initial release of table1 on CRAN.
+* This is the initial release of table1butbetter on CRAN.

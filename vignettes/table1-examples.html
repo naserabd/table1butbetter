@@ -14,7 +14,7 @@
 
 <meta name="date" content="2023-01-04" />
 
-<title>Using the table1 Package to Create HTML Tables of Descriptive Statistics</title>
+<title>Using the table1butbetter Package to Create HTML Tables of Descriptive Statistics</title>
 
 <script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
 <link href="data:text/css,%0A%2ERtable1%20table%2C%20table%2ERtable1%20%7B%0Afont%2Dfamily%3A%20%22Arial%22%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2010pt%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0Apadding%3A%200px%3B%0Amargin%3A%200px%3B%0A%0A%7D%0A%2ERtable1%20td%20%7B%0Awhite%2Dspace%3Anowrap%3B%0A%7D%0A%2ERtable1%20th%2C%20%2ERtable1%20td%20%7B%0Aborder%3A%200%3B%0Atext%2Dalign%3A%20center%3B%0Apadding%3A%200%2E5ex%201%2E5ex%3B%0Amargin%3A%200px%3B%0A%7D%0A%2ERtable1%20thead%3Etr%3Afirst%2Dchild%3Eth%20%7B%0Aborder%2Dtop%3A%202pt%20solid%20black%3B%0A%7D%0A%2ERtable1%20thead%3Etr%3Alast%2Dchild%3Eth%20%7B%0Aborder%2Dbottom%3A%201pt%20solid%20black%3B%0A%7D%0A%2ERtable1%20tbody%3Etr%3Alast%2Dchild%3Etd%20%7B%0Aborder%2Dbottom%3A%202pt%20solid%20black%3B%0A%7D%0A%2ERtable1%20th%2Egrouplabel%20%7B%0Apadding%2Dleft%3A%200%3B%0Apadding%2Dright%3A%200%3B%0A%7D%0A%2ERtable1%20th%2Egrouplabel%3Ediv%20%7B%0Amargin%2Dleft%3A%201%2E5ex%3B%0Amargin%2Dright%3A%201%2E5ex%3B%0Aborder%2Dbottom%3A%201pt%20solid%20black%3B%0A%7D%0A%2ERtable1%20th%2Egrouplabel%3Alast%2Dchild%3Ediv%20%7B%0Amargin%2Dright%3A%200%3B%0A%7D%0A%2ERtable1%20%2Erowlabel%20%7B%0Atext%2Dalign%3A%20left%3B%0Apadding%2Dleft%3A%202%2E5ex%3B%0A%7D%0A%2ERtable1%20%2Efirstrow%2Erowlabel%20%7B%0Apadding%2Dleft%3A%200%2E5ex%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0A%0A%2ERtable1%2Dzebra%20tbody%20tr%3Anth%2Dchild%28odd%29%20%7B%0Abackground%2Dcolor%3A%20%23eee%3B%0A%7D%0A%0Atable%2ERtable1%2Dtimes%20%7B%0Afont%2Dfamily%3A%20%22Times%20New%20Roman%22%2C%20Times%2C%20serif%3B%0A%7D%0A%0A%2ERtable1%2Dshade%20th%20%7B%0Abackground%2Dcolor%3A%20%23ccc%3B%0A%7D%0A%0A%2ERtable1%2Dgrid%20th%2C%20%2ERtable1%2Dgrid%20td%20%7B%0Aborder%2Dleft%3A%201pt%20solid%20black%3B%0Aborder%2Dright%3A%201pt%20solid%20black%3B%0A%7D%0A%2ERtable1%2Dgrid%20thead%3Etr%3Afirst%2Dchild%3Eth%20%7B%0Aborder%2Dtop%3A%201pt%20solid%20black%3B%0A%7D%0A%2ERtable1%2Dgrid%20thead%3Etr%3Alast%2Dchild%3Eth%20%7B%0Aborder%2Dbottom%3A%201pt%20solid%20black%3B%0A%7D%0A%2ERtable1%2Dgrid%20tbody%3Etr%3Alast%2Dchild%3Etd%20%7B%0Aborder%2Dbottom%3A%201pt%20solid%20black%3B%0A%7D%0A%2ERtable1%2Dgrid%20%2Efirstrow%2C%20%2ERtable1%2Dgrid%20%2Efirstrow%20%7E%20td%20%7B%0Aborder%2Dtop%3A%201pt%20solid%20black%3B%0A%7D%0A%2ERtable1%2Dgrid%20th%2Egrouplabel%3Ediv%20%7B%0Amargin%2Dleft%3A%200%3B%0Amargin%2Dright%3A%200%3B%0Aborder%2Dbottom%3A%200%3B%0A%7D%0A%0A%2ERtable1%2Dcenter%20td%2Erowlabel%2C%20%2ERtable1%2Dcenter%20td%2Efirstrow%2Erowlabel%20%7B%0Afont%2Dweight%3A%20bold%3B%0Atext%2Dalign%3A%20center%3B%0Apadding%3A%200%2E5ex%201%2E5ex%3B%0A%7D%0A%0A%2ERtable1%20%2ERtable1%2Dfootnote%20%7B%0Afont%2Dsize%3A%20smaller%3B%0Apadding%3A%200px%3B%0Amargin%3A%200px%3B%0Atext%2Dalign%3A%20left%3B%0Awhite%2Dspace%3A%20normal%3B%0A%7D%0A" rel="stylesheet" />
@@ -149,7 +149,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<h1 class="title toc-ignore">Using the table1 Package to Create HTML Tables of Descriptive Statistics</h1>
+<h1 class="title toc-ignore">Using the table1butbetter Package to Create HTML Tables of Descriptive Statistics</h1>
 <h4 class="author">Benjamin Rich</h4>
 <h4 class="date">2023-01-04</h4>
 
@@ -194,7 +194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot;Melanoma death&quot;</span>, </span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot;Non-melanoma death&quot;</span>))</span></code></pre></div>
 <p>As a first attempt, we can do the following:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1</span>(<span class="sc">~</span> <span class="fu">factor</span>(sex) <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">factor</span>(ulcer) <span class="sc">+</span> thickness <span class="sc">|</span> status, <span class="at">data=</span>melanoma2)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1butbetter</span>(<span class="sc">~</span> <span class="fu">factor</span>(sex) <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">factor</span>(ulcer) <span class="sc">+</span> thickness <span class="sc">|</span> status, <span class="at">data=</span>melanoma2)</span></code></pre></div>
 <div class="Rtable1"><table class="Rtable1">
 <thead>
 <tr>
@@ -293,7 +293,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </div>
-<p>Note that the <code>table1</code> package uses a familiar formula interface, where the variables to include in the table are separated by ‘+’ symbols, the “stratification” variable (which creates the columns) appears to the right of a “conditioning” symbol ‘|’, and the <code>data</code> argument specifies a <code>data.frame</code> that contains the variables in the formula.</p>
+<p>Note that the <code>table1butbetter</code> package uses a familiar formula interface, where the variables to include in the table are separated by ‘+’ symbols, the “stratification” variable (which creates the columns) appears to the right of a “conditioning” symbol ‘|’, and the <code>data</code> argument specifies a <code>data.frame</code> that contains the variables in the formula.</p>
 <p>But because we don’t have nice labels for the variables and categories, it doesn’t look great. To improve things, we can create factors with descriptive labels for the categorical variables (<code>sex</code> and <code>ulcer</code>), label each variable the way we want, and specify units for the continuous variables (<code>age</code> and <code>thickness</code>). We also specify that the overall column to be labeled “Total” and be positioned on the left, and add a caption and footnote:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>melanoma2<span class="sc">$</span>sex <span class="ot">&lt;-</span> </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">factor</span>(melanoma2<span class="sc">$</span>sex, <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),</span>
@@ -316,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>caption  <span class="ot">&lt;-</span> <span class="st">&quot;Basic stats&quot;</span></span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>footnote <span class="ot">&lt;-</span> <span class="st">&quot;ᵃ Also known as Breslow thickness&quot;</span></span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="fu">table1</span>(<span class="sc">~</span> sex <span class="sc">+</span> age <span class="sc">+</span> ulcer <span class="sc">+</span> thickness <span class="sc">|</span> status, <span class="at">data=</span>melanoma2,</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="fu">table1butbetter</span>(<span class="sc">~</span> sex <span class="sc">+</span> age <span class="sc">+</span> ulcer <span class="sc">+</span> thickness <span class="sc">|</span> status, <span class="at">data=</span>melanoma2,</span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">overall=</span><span class="fu">c</span>(<span class="at">left=</span><span class="st">&quot;Total&quot;</span>), <span class="at">caption=</span>caption, <span class="at">footnote=</span>footnote)</span></code></pre></div>
 <div class="Rtable1"><table class="Rtable1"><caption>Basic stats</caption>
 
@@ -419,7 +419,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </div>
-<p>This looks better, but still not quite the same as the original blog post: the two “Death” strata (Melanoma and Non-melanoma) should be grouped together under a common heading; the continuous variables Age and Thickness show only Means (SD) (with a ±), and not Median [Min, Max] like the <code>table1</code> default output; most values are displayed with two significant digits rather than three. To achieve the same result, we need to customize the output further, and in this case that involves using the slightly more complicated “default” (i.e. non-formula) interface to <code>table1</code>.</p>
+<p>This looks better, but still not quite the same as the original blog post: the two “Death” strata (Melanoma and Non-melanoma) should be grouped together under a common heading; the continuous variables Age and Thickness show only Means (SD) (with a ±), and not Median [Min, Max] like the <code>table1butbetter</code> default output; most values are displayed with two significant digits rather than three. To achieve the same result, we need to customize the output further, and in this case that involves using the slightly more complicated “default” (i.e. non-formula) interface to <code>table1butbetter</code>.</p>
 <p>First, we set up our labels differently, using a list:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>labels <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">variables=</span><span class="fu">list</span>(<span class="at">sex=</span><span class="st">&quot;Sex&quot;</span>,</span>
@@ -442,7 +442,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sprintf</span>(<span class="st">&quot;%d (%0.0f %%)&quot;</span>, FREQ, PCT))))</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>And here is the result:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1</span>(strata, labels, <span class="at">groupspan=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>), <span class="at">caption=</span>caption, <span class="at">footnote=</span>footnote,</span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1butbetter</span>(strata, labels, <span class="at">groupspan=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>), <span class="at">caption=</span>caption, <span class="at">footnote=</span>footnote,</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">render.continuous=</span>my.render.cont, <span class="at">render.categorical=</span>my.render.cat)</span></code></pre></div>
 <div class="Rtable1"><table class="Rtable1"><caption>Basic stats</caption>
 
@@ -563,7 +563,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="fu">units</span>(dat<span class="sc">$</span>age)   <span class="ot">&lt;-</span> <span class="st">&quot;years&quot;</span></span>
 <span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="fu">units</span>(dat<span class="sc">$</span>wt)    <span class="ot">&lt;-</span> <span class="st">&quot;kg&quot;</span></span></code></pre></div>
 <p>Using the default settings, we obtain this table:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1</span>(<span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> wt <span class="sc">|</span> treat, <span class="at">data=</span>dat)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1butbetter</span>(<span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> wt <span class="sc">|</span> treat, <span class="at">data=</span>dat)</span></code></pre></div>
 <div class="Rtable1"><table class="Rtable1">
 <thead>
 <tr>
@@ -639,7 +639,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Note that when contains missing values (here weight), be it continuous or categorical, these are reported as a distinct category (with count and percent).</p>
 <p>The “Overall” column can be easily removed (or relabeled):</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1</span>(<span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> wt <span class="sc">|</span> treat, <span class="at">data=</span>dat, <span class="at">overall=</span>F)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1butbetter</span>(<span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> wt <span class="sc">|</span> treat, <span class="at">data=</span>dat, <span class="at">overall=</span>F)</span></code></pre></div>
 <div class="Rtable1"><table class="Rtable1">
 <thead>
 <tr>
@@ -703,7 +703,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </div>
 <p>We can also have stratification by two variables, in which case they are nested. For example, to see each treatment group split by sex:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1</span>(<span class="sc">~</span> age <span class="sc">+</span> wt <span class="sc">|</span> treat<span class="sc">*</span>sex, <span class="at">data=</span>dat)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1butbetter</span>(<span class="sc">~</span> age <span class="sc">+</span> wt <span class="sc">|</span> treat<span class="sc">*</span>sex, <span class="at">data=</span>dat)</span></code></pre></div>
 <div class="Rtable1"><table class="Rtable1">
 <thead>
 <tr>
@@ -790,7 +790,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </div>
 <p>Or, switch the order:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1</span>(<span class="sc">~</span> age <span class="sc">+</span> wt <span class="sc">|</span> sex<span class="sc">*</span>treat, <span class="at">data=</span>dat)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1butbetter</span>(<span class="sc">~</span> age <span class="sc">+</span> wt <span class="sc">|</span> sex<span class="sc">*</span>treat, <span class="at">data=</span>dat)</span></code></pre></div>
 <div class="Rtable1"><table class="Rtable1">
 <thead>
 <tr>
@@ -877,7 +877,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </div>
 <p>Or, no stratification:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1</span>(<span class="sc">~</span> treat <span class="sc">+</span> age <span class="sc">+</span> sex <span class="sc">+</span> wt, <span class="at">data=</span>dat)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1butbetter</span>(<span class="sc">~</span> treat <span class="sc">+</span> age <span class="sc">+</span> sex <span class="sc">+</span> wt, <span class="at">data=</span>dat)</span></code></pre></div>
 <div class="Rtable1"><table class="Rtable1">
 <thead>
 <tr>
@@ -953,7 +953,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">wt=</span><span class="fu">render.varlabel</span>(dat<span class="sc">$</span>wt)),</span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">groups=</span><span class="fu">list</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;Treated&quot;</span>, <span class="st">&quot;&quot;</span>))</span>
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="fu">table1</span>(strata, labels, <span class="at">groupspan=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>))</span></code></pre></div>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="fu">table1butbetter</span>(strata, labels, <span class="at">groupspan=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>))</span></code></pre></div>
 <div class="Rtable1"><table class="Rtable1">
 <thead>
 <tr>
@@ -1059,7 +1059,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="using-abbreviated-code-to-specify-a-custom-renderer" class="section level2">
 <h2>Using abbreviated code to specify a custom renderer</h2>
 <p>Suppose that for continuous variables, we want to display the percent coefficient of variation (CV%) instead of the standard deviation (SD). We also want to display the geometric mean and geometric coefficient of variation. We already discussed custom render functions that could be used to accomplish this, but a simpler alternative is to use abbreviated code. This is a character string that contains certain keywords which are substituted for computed values in the table output. The list of recognized keywords comes from the output of the <code>stats.default</code> function and includes: N, NMISS, MEAN, SD, CV, GMEAN, GCV, MEDIAN, MIN, MAX, IQR, Q1, Q2, Q3, T1, T2, FREQ, PCT. Keyword matching is case insensitive, and any text other than the keywords is left untouched. We can specify a vector of character strings, in which case each result will be displayed in its own row in the table. We can use a named vector to specify labels for each row; a dot (‘.’) can be used to indicate that the abbreviated code string itself be used as the row label. Significant digits can be controlled using the <code>digits</code> argument (default: 3). Here is a continuation of the example from the previous section that produces the desired result:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1</span>(strata, labels, <span class="at">groupspan=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>),</span>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1butbetter</span>(strata, labels, <span class="at">groupspan=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>),</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">render.continuous=</span><span class="fu">c</span>(<span class="at">.=</span><span class="st">&quot;Mean (CV%)&quot;</span>, <span class="at">.=</span><span class="st">&quot;Median [Min, Max]&quot;</span>,</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                           <span class="st">&quot;Geo. mean (Geo. CV%)&quot;</span><span class="ot">=</span><span class="st">&quot;GMEAN (GCV%)&quot;</span>))</span></code></pre></div>
 <div class="Rtable1"><table class="Rtable1">
@@ -1191,7 +1191,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">parse.abbrev.render.code</span>(<span class="fu">c</span>(<span class="st">&quot;&quot;</span>, what))(x)</span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="fu">table1</span>(<span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> wt <span class="sc">|</span> treat, <span class="at">data=</span>dat,</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="fu">table1butbetter</span>(<span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> wt <span class="sc">|</span> treat, <span class="at">data=</span>dat,</span>
 <span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">render=</span>rndr)</span></code></pre></div>
 <div class="Rtable1"><table class="Rtable1">
 <thead>
@@ -1264,7 +1264,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="changing-the-tables-appearance" class="section level2">
 <h2>Changing the table’s appearance</h2>
-<p>The default style of <code>table1</code> uses an Arial font, and resembles the <a href="https://ctan.org/pkg/booktabs">booktabs</a> style commonly used in LaTeX. While this default style is not ugly, inevitably there will be a desire to customize the visual appearance of the table (fonts, colors, gridlines, etc). The package provides a limited number of built-in options for changing the style, while further customization can be achieved in <a href="https://rmarkdown.rstudio.com/">R Markdown</a> documents using CSS (see below).</p>
+<p>The default style of <code>table1butbetter</code> uses an Arial font, and resembles the <a href="https://ctan.org/pkg/booktabs">booktabs</a> style commonly used in LaTeX. While this default style is not ugly, inevitably there will be a desire to customize the visual appearance of the table (fonts, colors, gridlines, etc). The package provides a limited number of built-in options for changing the style, while further customization can be achieved in <a href="https://rmarkdown.rstudio.com/">R Markdown</a> documents using CSS (see below).</p>
 <div id="using-built-in-styles" class="section level3">
 <h3>Using built-in styles</h3>
 <p>The package includes a limited number of built-in styles including:</p>
@@ -1275,8 +1275,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>times: use a serif font</li>
 <li>center: center all columns, including the first which contains the row labels</li>
 </ul>
-<p>These styles can be selected using the <code>topclass</code> argument of <code>table1</code>. Some examples follow:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1</span>(<span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> wt <span class="sc">|</span> treat, <span class="at">data=</span>dat, <span class="at">topclass=</span><span class="st">&quot;Rtable1-zebra&quot;</span>)</span></code></pre></div>
+<p>These styles can be selected using the <code>topclass</code> argument of <code>table1butbetter</code>. Some examples follow:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1butbetter</span>(<span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> wt <span class="sc">|</span> treat, <span class="at">data=</span>dat, <span class="at">topclass=</span><span class="st">&quot;Rtable1-zebra&quot;</span>)</span></code></pre></div>
 <div class="Rtable1"><table class="Rtable1-zebra">
 <thead>
 <tr>
@@ -1350,7 +1350,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1</span>(<span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> wt <span class="sc">|</span> treat, <span class="at">data=</span>dat, <span class="at">topclass=</span><span class="st">&quot;Rtable1-grid&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1butbetter</span>(<span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> wt <span class="sc">|</span> treat, <span class="at">data=</span>dat, <span class="at">topclass=</span><span class="st">&quot;Rtable1-grid&quot;</span>)</span></code></pre></div>
 <div class="Rtable1"><table class="Rtable1-grid">
 <thead>
 <tr>
@@ -1424,7 +1424,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1</span>(<span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> wt <span class="sc">|</span> treat, <span class="at">data=</span>dat, <span class="at">topclass=</span><span class="st">&quot;Rtable1-grid Rtable1-shade Rtable1-times&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1butbetter</span>(<span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> wt <span class="sc">|</span> treat, <span class="at">data=</span>dat, <span class="at">topclass=</span><span class="st">&quot;Rtable1-grid Rtable1-shade Rtable1-times&quot;</span>)</span></code></pre></div>
 <div class="Rtable1"><table class="Rtable1-grid Rtable1-shade Rtable1-times">
 <thead>
 <tr>
@@ -1646,9 +1646,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The initial empty string places the output on the line below the variable label.</span></span>
 <span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="st">&quot;&quot;</span>, <span class="fu">sub</span>(<span class="st">&quot;&lt;&quot;</span>, <span class="st">&quot;&amp;lt;&quot;</span>, <span class="fu">format.pval</span>(p, <span class="at">digits=</span><span class="dv">3</span>, <span class="at">eps=</span><span class="fl">0.001</span>)))</span>
 <span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p>Note that this function expects a specific input, namely a list with 2 components corresponding to the 2 strata “Treatment” and “Control” in the <code>lalonde</code> data. These are the only 2 elements the list will have, because we will use <code>overall=F</code> in <code>table1</code> (otherwise, there would be a third element in the list corresponding to the overall column). Thus, this function is in some sense specifically tailored to this examples, and would need to be adapted to other situations (such as more than 2 strata, where a t-test would not work).</p>
-<p>Now, we supply our function in the <code>extra.col</code> list argument to <code>table1</code> with the name <code>P-value</code>, which will appear as the column label (heading).</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1</span>(<span class="sc">~</span> age <span class="sc">+</span> race <span class="sc">+</span> married <span class="sc">+</span> nodegree <span class="sc">+</span> re74 <span class="sc">+</span> re75 <span class="sc">+</span> re78 <span class="sc">|</span> treat,</span>
+<p>Note that this function expects a specific input, namely a list with 2 components corresponding to the 2 strata “Treatment” and “Control” in the <code>lalonde</code> data. These are the only 2 elements the list will have, because we will use <code>overall=F</code> in <code>table1butbetter</code> (otherwise, there would be a third element in the list corresponding to the overall column). Thus, this function is in some sense specifically tailored to this examples, and would need to be adapted to other situations (such as more than 2 strata, where a t-test would not work).</p>
+<p>Now, we supply our function in the <code>extra.col</code> list argument to <code>table1butbetter</code> with the name <code>P-value</code>, which will appear as the column label (heading).</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1butbetter</span>(<span class="sc">~</span> age <span class="sc">+</span> race <span class="sc">+</span> married <span class="sc">+</span> nodegree <span class="sc">+</span> re74 <span class="sc">+</span> re75 <span class="sc">+</span> re78 <span class="sc">|</span> treat,</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">data=</span>lalonde, <span class="at">overall=</span>F, <span class="at">extra.col=</span><span class="fu">list</span>(<span class="st">`</span><span class="at">P-value</span><span class="st">`</span><span class="ot">=</span>pvalue))</span></code></pre></div>
 <div class="Rtable1"><table class="Rtable1">
 <thead>
@@ -1800,13 +1800,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="transposed-table" class="section level2">
 <h2>Transposed table</h2>
-<p>By default, the table produced by <code>table1</code> will have strata or subgroups as columns, and variables as rows. In some cases, it may be desirable to transpose the table such that each column is a variables and the rows are strata. This makes most sense when all the variables are continuous and when a compact representation is desired. It can be achieved by using the <code>transpose = TRUE</code> option.</p>
+<p>By default, the table produced by <code>table1butbetter</code> will have strata or subgroups as columns, and variables as rows. In some cases, it may be desirable to transpose the table such that each column is a variables and the rows are strata. This makes most sense when all the variables are continuous and when a compact representation is desired. It can be achieved by using the <code>transpose = TRUE</code> option.</p>
 <p>An example:</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">i=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>, <span class="at">group=</span>LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">cbind</span>(dat, <span class="fu">matrix</span>(<span class="fu">round</span>(<span class="fu">exp</span>(<span class="fu">rnorm</span>(<span class="dv">6</span><span class="sc">*</span><span class="fu">nrow</span>(dat))), <span class="dv">1</span>), <span class="at">nrow=</span><span class="fu">nrow</span>(dat)))</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(dat)[<span class="dv">3</span><span class="sc">:</span><span class="dv">8</span>] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;V&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>)</span></code></pre></div>
 <p>Default:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1</span>(<span class="sc">~</span> V1 <span class="sc">+</span> V2 <span class="sc">+</span> V3 <span class="sc">+</span> V4 <span class="sc">+</span> V5 <span class="sc">+</span> V6 <span class="sc">|</span> group, <span class="at">data=</span>dat,</span>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1butbetter</span>(<span class="sc">~</span> V1 <span class="sc">+</span> V2 <span class="sc">+</span> V3 <span class="sc">+</span> V4 <span class="sc">+</span> V5 <span class="sc">+</span> V6 <span class="sc">|</span> group, <span class="at">data=</span>dat,</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">topclass=</span><span class="st">&quot;Rtable1-grid Rtable1-center&quot;</span>,</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">render=</span><span class="st">&quot;Mean (CV%)&lt;br/&gt;Median [Min, Max]&lt;br/&gt;GMean (GCV%)&quot;</span>)</span></code></pre></div>
 <div class="Rtable1"><table class="Rtable1-grid Rtable1-center">
@@ -1866,7 +1866,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </div>
 <p>Transposed:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1</span>(<span class="sc">~</span> V1 <span class="sc">+</span> V2 <span class="sc">+</span> V3 <span class="sc">+</span> V4 <span class="sc">+</span> V5 <span class="sc">+</span> V6 <span class="sc">|</span> group, <span class="at">data=</span>dat,</span>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table1butbetter</span>(<span class="sc">~</span> V1 <span class="sc">+</span> V2 <span class="sc">+</span> V3 <span class="sc">+</span> V4 <span class="sc">+</span> V5 <span class="sc">+</span> V6 <span class="sc">|</span> group, <span class="at">data=</span>dat,</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">topclass=</span><span class="st">&quot;Rtable1-grid Rtable1-center&quot;</span>,</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">render=</span><span class="st">&quot;Mean (CV%)&lt;br/&gt;Median [Min, Max]&lt;br/&gt;GMean (GCV%)&quot;</span>,</span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">transpose=</span><span class="cn">TRUE</span>)</span></code></pre></div>

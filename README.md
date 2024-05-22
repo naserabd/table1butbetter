@@ -1,8 +1,8 @@
-# table1
+# table1butbetter
 
-[![R-CMD-check](https://github.com/benjaminrich/table1/workflows/R-CMD-check/badge.svg)](https://github.com/benjaminrich/table1/actions)
-[![CRAN\_Release\_Badge](https://www.r-pkg.org/badges/version-ago/table1)](https://CRAN.R-project.org/package=table1)
-[![CRAN\_Download\_Badge](https://cranlogs.r-pkg.org/badges/table1)](https://CRAN.R-project.org/package=table1)
+[![R-CMD-check](https://github.com/benjaminrich/table1butbetter/workflows/R-CMD-check/badge.svg)](https://github.com/benjaminrich/table1butbetter/actions)
+[![CRAN\_Release\_Badge](https://www.r-pkg.org/badges/version-ago/table1butbetter)](https://CRAN.R-project.org/package=table1butbetter)
+[![CRAN\_Download\_Badge](https://cranlogs.r-pkg.org/badges/table1butbetter)](https://CRAN.R-project.org/package=table1butbetter)
 
 An R package for generating tables of descriptive statistics in HTML.
 
@@ -11,26 +11,26 @@ An R package for generating tables of descriptive statistics in HTML.
 To install from CRAN:
 
 ``` r
-install.packages("table1")
+install.packages("table1butbetter")
 ```
 
 To install the latest development version directly from GitHub:
 
 ``` r
 require(devtools)
-devtools::install_github("benjaminrich/table1")
+devtools::install_github("benjaminrich/table1butbetter")
 ```
 
 ## Getting Started
 
-An introduction to the package with examples is provided in the [vignette](https://benjaminrich.github.io/table1/vignettes/table1-examples.html).
+An introduction to the package with examples is provided in the [vignette](https://benjaminrich.github.io/table1butbetter/vignettes/table1butbetter-examples.html).
 
 ## Example
 
 For this example, we will use data from the Mayo Clinic trial in primary biliary cirrhosis (PBC) of the liver found in the `survival` package.
 
 ``` r
-require(table1)
+require(table1butbetter)
 require(survival)
 
 dat <- subset(survival::pbc, !is.na(trt))  # Exclude subjects not randomized
@@ -63,9 +63,9 @@ label(dat$chol)     <- "Serum cholesterol (mg/dL)"
 label(dat$copper)   <- "Urine copper (&mu;g/day)"
 label(dat$trig)     <- "Triglycerides (mg/dL)"
 
-table1(~ age + sex + stage + edema + spiders + hepato + ascites +
+table1butbetter(~ age + sex + stage + edema + spiders + hepato + ascites +
          platelet + protime + albumin + alk.phos + ast + bili + chol +
          copper + trig | trt, data=dat)
 ```
 
-![Example result: table of descriptive statistics from pbc data](tools/readme/table1-example-pbc.png)
+![Example result: table of descriptive statistics from pbc data](tools/readme/table1butbetter-example-pbc.png)

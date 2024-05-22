@@ -1,5 +1,5 @@
 ---
-title: "Using the table1 Package to Create HTML Tables of Descriptive Statistics"
+title: "Using the table1butbetter Package to Create HTML Tables of Descriptive Statistics"
 author: "Benjamin Rich"
 date: "`r Sys.Date()`"
 output: 
@@ -7,14 +7,14 @@ output:
     css: [style.css, vignette.css]
     toc: true
 vignette: >
-  %\VignetteIndexEntry{Using the table1 Package to Create HTML Tables of Descriptive Statistics}
+  %\VignetteIndexEntry{Using the table1butbetter Package to Create HTML Tables of Descriptive Statistics}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteDepends{boot,MatchIt}
   %\VignetteEncoding{UTF-8}
 ---
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
-library(table1, quietly=TRUE)
+library(table1butbetter, quietly=TRUE)
 ```
 
 ## Introduction
@@ -61,10 +61,10 @@ melanoma2$status <-
 As a first attempt, we can do the following:
 
 ```{r}
-table1(~ factor(sex) + age + factor(ulcer) + thickness | status, data=melanoma2)
+table1butbetter(~ factor(sex) + age + factor(ulcer) + thickness | status, data=melanoma2)
 ```
 
-Note that the `table1` package uses a familiar formula interface, where the
+Note that the `table1butbetter` package uses a familiar formula interface, where the
 variables to include in the table are separated by '+' symbols, the
 "stratification" variable (which creates the columns) appears to the right of a
 "conditioning" symbol '|', and the `data` argument specifies a `data.frame`
@@ -100,18 +100,18 @@ units(melanoma2$thickness) <- "mm"
 caption  <- "Basic stats"
 footnote <- "ᵃ Also known as Breslow thickness"
 
-table1(~ sex + age + ulcer + thickness | status, data=melanoma2,
+table1butbetter(~ sex + age + ulcer + thickness | status, data=melanoma2,
     overall=c(left="Total"), caption=caption, footnote=footnote)
 ```
 
 This looks better, but still not quite the same as the original blog post:
 the two "Death" strata (Melanoma and Non-melanoma) should be grouped together
 under a common heading; the continuous variables Age and Thickness show only
-Means (SD) (with a &plusmn;), and not Median [Min, Max] like the `table1`
+Means (SD) (with a &plusmn;), and not Median [Min, Max] like the `table1butbetter`
 default output; most values are displayed with two significant digits rather
 than three. To achieve the same result, we need to customize the output
 further, and in this case that involves using the slightly more complicated
-"default"  (i.e. non-formula) interface to `table1`.
+"default"  (i.e. non-formula) interface to `table1butbetter`.
 
 First, we set up our labels differently, using a list:
 
@@ -155,7 +155,7 @@ my.render.cat <- function(x) {
 And here is the result:
 
 ```{r}
-table1(strata, labels, groupspan=c(1, 1, 2), caption=caption, footnote=footnote,
+table1butbetter(strata, labels, groupspan=c(1, 1, 2), caption=caption, footnote=footnote,
        render.continuous=my.render.cont, render.categorical=my.render.cat)
 ```
 
@@ -209,7 +209,7 @@ units(dat$wt)    <- "kg"
 Using the default settings, we obtain this table:
 
 ```{r}
-table1(~ age + sex + wt | treat, data=dat)
+table1butbetter(~ age + sex + wt | treat, data=dat)
 ```
 
 Note that when contains missing values (here weight), be it continuous or
@@ -219,26 +219,26 @@ percent).
 The "Overall" column can be easily removed (or relabeled):
 
 ```{r}
-table1(~ age + sex + wt | treat, data=dat, overall=F)
+table1butbetter(~ age + sex + wt | treat, data=dat, overall=F)
 ```
 
 We can also have stratification by two variables, in which case they are
 nested.  For example, to see each treatment group split by sex:
 
 ```{r}
-table1(~ age + wt | treat*sex, data=dat)
+table1butbetter(~ age + wt | treat*sex, data=dat)
 ```
 
 Or, switch the order:
 
 ```{r}
-table1(~ age + wt | sex*treat, data=dat)
+table1butbetter(~ age + wt | sex*treat, data=dat)
 ```
 
 Or, no stratification:
 
 ```{r}
-table1(~ treat + age + sex + wt, data=dat)
+table1butbetter(~ treat + age + sex + wt, data=dat)
 ```
 
 Finally, we may again consider something a bit more complicated, using the
@@ -259,7 +259,7 @@ labels <- list(
                    wt=render.varlabel(dat$wt)),
     groups=list("", "Treated", ""))
 
-table1(strata, labels, groupspan=c(1, 3, 1))
+table1butbetter(strata, labels, groupspan=c(1, 3, 1))
 ```
 
 ## Using abbreviated code to specify a custom renderer
@@ -282,7 +282,7 @@ controlled using the `digits` argument (default: 3). Here is a continuation of
 the example from the previous section that produces the desired result:
 
 ```{r}
-table1(strata, labels, groupspan=c(1, 3, 1),
+table1butbetter(strata, labels, groupspan=c(1, 3, 1),
        render.continuous=c(.="Mean (CV%)", .="Median [Min, Max]",
                            "Geo. mean (Geo. CV%)"="GMEAN (GCV%)"))
 ```
@@ -302,7 +302,7 @@ rndr <- function(x, name, ...) {
     parse.abbrev.render.code(c("", what))(x)
 }
 
-table1(~ age + sex + wt | treat, data=dat,
+table1butbetter(~ age + sex + wt | treat, data=dat,
        render=rndr)
 ```
 
@@ -315,7 +315,7 @@ corresponding render function.
 
 ## Changing the table's appearance
 
-The default style of `table1` uses an Arial font, and resembles the
+The default style of `table1butbetter` uses an Arial font, and resembles the
 [booktabs](https://ctan.org/pkg/booktabs) style commonly used in LaTeX. While
 this default style is not ugly, inevitably there will be a desire to customize
 the visual appearance of the table (fonts, colors, gridlines, etc).  The
@@ -333,19 +333,19 @@ The package includes a limited number of built-in styles including:
 * times: use a serif font
 * center: center all columns, including the first which contains the row labels
 
-These styles can be selected using the `topclass` argument of `table1`. Some
+These styles can be selected using the `topclass` argument of `table1butbetter`. Some
 examples follow:
 
 ```{r}
-table1(~ age + sex + wt | treat, data=dat, topclass="Rtable1-zebra")
+table1butbetter(~ age + sex + wt | treat, data=dat, topclass="Rtable1-zebra")
 ```
 
 ```{r}
-table1(~ age + sex + wt | treat, data=dat, topclass="Rtable1-grid")
+table1butbetter(~ age + sex + wt | treat, data=dat, topclass="Rtable1-grid")
 ```
 
 ```{r}
-table1(~ age + sex + wt | treat, data=dat, topclass="Rtable1-grid Rtable1-shade Rtable1-times")
+table1butbetter(~ age + sex + wt | treat, data=dat, topclass="Rtable1-grid Rtable1-shade Rtable1-times")
 ```
 
 Note that the style name needs to be preceded by the prefix `Rtable1-`.
@@ -394,7 +394,7 @@ table.Rtable1 {
 then the output will be as follows:
 
 ```{r, echo=F}
-table1(~ age + sex + wt | treat, data=dat, topclass="custom")
+table1butbetter(~ age + sex + wt | treat, data=dat, topclass="custom")
 ```
 
 (Note: as an alternative to redefining the default CSS class `Rtable1`, a
@@ -470,16 +470,16 @@ pvalue <- function(x, ...) {
 Note that this function expects a specific input, namely a list with 2
 components corresponding to the 2 strata "Treatment" and "Control" in the
 `lalonde` data. These are the only 2 elements the list will have, because we
-will use `overall=F` in `table1` (otherwise, there would be a third element
+will use `overall=F` in `table1butbetter` (otherwise, there would be a third element
 in the list corresponding to the overall column). Thus, this function is in some
 sense specifically tailored to this examples, and would need to be adapted to
 other situations (such as more than 2 strata, where a t-test would not work).
 
-Now, we supply our function in the `extra.col` list argument to `table1` with
+Now, we supply our function in the `extra.col` list argument to `table1butbetter` with
 the name `P-value`, which will appear as the column label (heading).
 
 ```{r}
-table1(~ age + race + married + nodegree + re74 + re75 + re78 | treat,
+table1butbetter(~ age + race + married + nodegree + re74 + re75 + re78 | treat,
     data=lalonde, overall=F, extra.col=list(`P-value`=pvalue))
 ```
 
@@ -489,7 +489,7 @@ being totally flexible.
 
 ## Transposed table
 
-By default, the table produced by `table1` will have strata or subgroups as
+By default, the table produced by `table1butbetter` will have strata or subgroups as
 columns, and variables as rows. In some cases, it may be desirable to transpose
 the table such that each column is a variables and the rows are strata. This
 makes most sense when all the variables are continuous and when a compact
@@ -507,7 +507,7 @@ names(dat)[3:8] <- paste0("V", 1:6)
 Default:
 
 ```{r}
-table1(~ V1 + V2 + V3 + V4 + V5 + V6 | group, data=dat,
+table1butbetter(~ V1 + V2 + V3 + V4 + V5 + V6 | group, data=dat,
        topclass="Rtable1-grid Rtable1-center",
        render="Mean (CV%)<br/>Median [Min, Max]<br/>GMean (GCV%)")
 ```
@@ -515,7 +515,7 @@ table1(~ V1 + V2 + V3 + V4 + V5 + V6 | group, data=dat,
 Transposed:
 
 ```{r}
-table1(~ V1 + V2 + V3 + V4 + V5 + V6 | group, data=dat,
+table1butbetter(~ V1 + V2 + V3 + V4 + V5 + V6 | group, data=dat,
        topclass="Rtable1-grid Rtable1-center",
        render="Mean (CV%)<br/>Median [Min, Max]<br/>GMean (GCV%)",
        transpose=TRUE)

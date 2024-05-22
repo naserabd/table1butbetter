@@ -57,7 +57,7 @@
 #'       `1` = "\U{2265} 65")))
 #'
 #'  data <- t1read(data, metadata)
-#'  table1(~ sex + age + agecat + wgt | cohort, data=data)
+#'  table1butbetter(~ sex + age + agecat + wgt | cohort, data=data)
 #'
 #' @keywords utilities
 #' @export

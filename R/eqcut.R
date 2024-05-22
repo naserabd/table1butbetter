@@ -65,7 +65,7 @@
 #'    sprintf("%s %s<br/>&ge;%s to &lt;%s",
 #'        which, what, signif_pad(from, 3, FALSE), signif_pad(to, 3, FALSE))
 #' }
-#' table1(~ sex + age + wt | eqcut(auc, 3, f, w), data=dat)
+#' table1butbetter(~ sex + age + wt | eqcut(auc, 3, f, w), data=dat)
 #'
 #' @keywords utilities
 #' @export

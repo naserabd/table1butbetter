@@ -320,7 +320,7 @@ stats.apply.rounding <- function(x, digits=3, digits.pct=1, round.median.min.max
 
 #' Render values for table output.
 #'
-#' Called from \code{\link{table1}} by default to render values for
+#' Called from \code{\link{table1butbetter}} by default to render values for
 #' displaying in the table. This function forwards the call to separate
 #' functions for rendering continuous, categorical and missing values.
 #' The idea is that each of these functions can be overridden to customize
@@ -487,7 +487,7 @@ function(code, ...) {
 
 #' Render continuous values for table output.
 #'
-#' Called from \code{\link{table1}} by default to render continuous (i.e.
+#' Called from \code{\link{table1butbetter}} by default to render continuous (i.e.
 #' \code{numeric}) values for displaying in the table.
 #'
 #' @param x A numeric vector.
@@ -513,7 +513,7 @@ render.continuous.default <- function(x, ...) {
 
 #' Render categorical values for table output.
 #'
-#' Called from \code{\link{table1}} by default to render categorical (i.e.
+#' Called from \code{\link{table1butbetter}} by default to render categorical (i.e.
 #' \code{factor}, \code{character} or \code{logical}) values for displaying in the table.
 #'
 #' @param x A vector of type \code{factor}, \code{character} or \code{logical}.
@@ -540,7 +540,7 @@ render.categorical.default <- function(x, ..., na.is.category=TRUE) {
 
 #' Render missing values for table output.
 #'
-#' Called from \code{\link{table1}} by default to render missing (i.e.
+#' Called from \code{\link{table1butbetter}} by default to render missing (i.e.
 #' \code{NA}) values for displaying in the table.
 #'
 #' @param x A vector.
@@ -564,7 +564,7 @@ render.missing.default <- function(x, ...) {
 
 #' Render variable labels for table output.
 #'
-#' Called from \code{\link{table1.formula}} by default to render variable labels
+#' Called from \code{\link{table1butbetter.formula}} by default to render variable labels
 #' for displaying in the table.
 #'
 #' @param x A vector, usually with the \code{\link{label}} and (if appropriate)
@@ -603,7 +603,7 @@ render.varlabel <- function(x, transpose=F) {
 
 #' Render strata labels for table output.
 #'
-#' Called from \code{\link{table1.formula}} to render strata labels
+#' Called from \code{\link{table1butbetter.formula}} to render strata labels
 #' for displaying in the table.
 #'
 #' @param label A \code{character} vector containing the labels.
@@ -842,7 +842,7 @@ has.units <- function(x) {
 #' @param extra.col.pos An optional integer vector given the positions of extra columns (see Details).
 #' @param ... Further arguments, passed to \code{render}.
 #'
-#' @return An object of class "table1".
+#' @return An object of class "table1butbetter".
 #'
 #' @examples
 #'
@@ -860,16 +860,16 @@ has.units <- function(x) {
 #' units(dat$wt) <- "kg"
 #' 
 #' # One level of stratification
-#' table1(~ sex + age + wt | treat, data=dat)
+#' table1butbetter(~ sex + age + wt | treat, data=dat)
 #' 
 #' # Two levels of stratification (nesting)
-#' table1(~ age + wt | treat*sex, data=dat)
+#' table1butbetter(~ age + wt | treat*sex, data=dat)
 #' 
 #' # Switch the order or nesting
-#' table1(~ age + wt | sex*treat, data=dat)
+#' table1butbetter(~ age + wt | sex*treat, data=dat)
 #' 
 #' # No stratification
-#' table1(~ treat + sex + age + wt, data=dat)
+#' table1butbetter(~ treat + sex + age + wt, data=dat)
 #' 
 #' # Something more complicated
 #' 
@@ -892,21 +892,21 @@ has.units <- function(x) {
 #'         sprintf("%0.2f (%0.1f)", MEAN, SD))
 #' }
 #' 
-#' table1(strata, labels, groupspan=c(1, 3, 1), render.continuous=my.render.cont)
+#' table1butbetter(strata, labels, groupspan=c(1, 3, 1), render.continuous=my.render.cont)
 #'
 #' # Transposed table
-#' table1(~ age + wt | treat, data=dat, transpose=TRUE)
+#' table1butbetter(~ age + wt | treat, data=dat, transpose=TRUE)
 #' 
 #' @keywords utilities
 #' @export
-table1 <- function(x, ...) {
-    UseMethod("table1")
+table1butbetter <- function(x, ...) {
+    UseMethod("table1butbetter")
 }
 
-#' @describeIn table1 The default interface, where \code{x} is a \code{data.frame}.
+#' @describeIn table1butbetter The default interface, where \code{x} is a \code{data.frame}.
 #' @export
-table1.default <- function(x, labels, groupspan=NULL, rowlabelhead="", transpose=FALSE, topclass="Rtable1", footnote=NULL, caption=NULL, render=render.default, render.strat=render.strat.default, extra.col=NULL, extra.col.pos=NULL, ...) {
-    .table1.internal(
+table1butbetter.default <- function(x, labels, groupspan=NULL, rowlabelhead="", transpose=FALSE, topclass="Rtable1", footnote=NULL, caption=NULL, render=render.default, render.strat=render.strat.default, extra.col=NULL, extra.col.pos=NULL, ...) {
+    .table1butbetter.internal(
         x             = x,
         labels        = labels,
         groupspan     = groupspan,
@@ -921,7 +921,7 @@ table1.default <- function(x, labels, groupspan=NULL, rowlabelhead="", transpose
         extra.col.pos = extra.col.pos, ...)
 }
 
-.table1.internal <- function(x, labels, groupspan=NULL, rowlabelhead="", transpose=FALSE, topclass="Rtable1", footnote=NULL, caption=NULL, render=render.default, render.strat=render.strat.default, extra.col=NULL, extra.col.pos=NULL, ...) {
+.table1butbetter.internal <- function(x, labels, groupspan=NULL, rowlabelhead="", transpose=FALSE, topclass="Rtable1", footnote=NULL, caption=NULL, render=render.default, render.strat=render.strat.default, extra.col=NULL, extra.col.pos=NULL, ...) {
     if (is.null(labels$strata)) {
         labels$strata <- names(x)
     }
@@ -1042,12 +1042,12 @@ table1.default <- function(x, labels, groupspan=NULL, rowlabelhead="", transpose
 
 #' Update HTML.
 #'
-#' Used to (re-)generate the HTML code for a \code{link{table1}} object. In
+#' Used to (re-)generate the HTML code for a \code{link{table1butbetter}} object. In
 #' most cases, this should not be used direction, unless you know what you are
 #' doing.
 #'
-#' @param x An object returned by \code{\link{table1}}.
-#' @return An object of class "table1" which contains the updated HTML.
+#' @param x An object returned by \code{\link{table1butbetter}}.
+#' @return An object of class "table1butbetter" which contains the updated HTML.
 #' @export
 update_html <- function(x) {
     obj <- attr(x, "obj")
@@ -1103,17 +1103,17 @@ update_html <- function(x) {
             paste(sapply(contents, table.rows), collapse=""),
             '</tbody>\n</table>\n')
 
-        structure(x, class=c("table1", "html", "character"), html=TRUE, obj=obj)
+        structure(x, class=c("table1butbetter", "html", "character"), html=TRUE, obj=obj)
     })
 }
 
-#' Convert a \code{table1} object to a \code{data.frame}.
+#' Convert a \code{table1butbetter} object to a \code{data.frame}.
 #'
-#' @param x An object returned by \code{\link{table1}}.
+#' @param x An object returned by \code{\link{table1butbetter}}.
 #' @param ... Ignored.
 #' @return A \code{data.frame}.
 #' @export
-as.data.frame.table1 <- function(x, ...) {
+as.data.frame.table1butbetter <- function(x, ...) {
     obj <- attr(x, "obj")
     with(obj, {
         rlh <- if (is.null(rowlabelhead) || rowlabelhead=="") " " else rowlabelhead
@@ -1131,9 +1131,9 @@ as.data.frame.table1 <- function(x, ...) {
     })
 }
 
-#' Convert a \code{table1} object to \code{flextable}.
+#' Convert a \code{table1butbetter} object to \code{flextable}.
 #'
-#' @param x An object returned by \code{\link{table1}}.
+#' @param x An object returned by \code{\link{table1butbetter}}.
 #' @param tablefn Choose a function from the \code{flextable} package to use as
 #' the basis for the table.
 #' @param ... Further options passed to \code{tablefn}.
@@ -1198,9 +1198,9 @@ t1flex <- function(x, tablefn=c("qflextable", "flextable", "regulartable"), ...)
     })
 }
 
-#' Convert a \code{table1} object to \code{kabelExtra}.
+#' Convert a \code{table1butbetter} object to \code{kabelExtra}.
 #'
-#' @param x An object returned by \code{\link{table1}}.
+#' @param x An object returned by \code{\link{table1butbetter}}.
 #' @param booktabs Passed to \code{kbl} (default \code{TRUE}).
 #' @param ... Other options passed to \code{kbl}.
 #' @param format Passed to \code{kbl} (optional).
@@ -1268,19 +1268,19 @@ t1kable <- function(x, booktabs=TRUE, ..., format) {
     })
 }
 
-#' Print \code{table1} object.
+#' Print \code{table1butbetter} object.
 #'
-#' @param x An object returned by \code{\link{table1}}.
+#' @param x An object returned by \code{\link{table1butbetter}}.
 #' @param ... Further arguments passed on to other \code{print} methods.
 #' @return Returns \code{x} invisibly.
 #' @details In an interactive context, the rendered table will be displayed in
 #' a web browser. Otherwise, the HTML code will be printed as text.
 #' @export
-print.table1 <- function(x, ...) {
+print.table1butbetter <- function(x, ...) {
     if (interactive()) {
         x <- htmltools::HTML(x)
-        default.style <- htmltools::htmlDependency("table1", "1.0",
-            src=system.file(package="table1", "table1_defaults_1.0"),
+        default.style <- htmltools::htmlDependency("table1butbetter", "1.0",
+            src=system.file(package="table1butbetter", "table1_defaults_1.0"),
             stylesheet="table1_defaults.css")
         x <- htmltools::div(class="Rtable1", default.style, x)
         x <- htmltools::browsable(x)
@@ -1293,13 +1293,13 @@ print.table1 <- function(x, ...) {
 
 #' Method for printing in a \code{knitr} context.
 #'
-#' @param x An object returned by \code{\link{table1}}.
+#' @param x An object returned by \code{\link{table1butbetter}}.
 #' @param ... Further arguments passed on to \code{knitr::knit_print}.
 #' @details If the target is HTML, the usual internal formatting will be
 #' applied; otherwise, fall back to a `data.frame`.
 #' @importFrom knitr knit_print
 #' @export
-knit_print.table1 <- function(x, ...) {
+knit_print.table1butbetter <- function(x, ...) {
 
     knit_to <- knitr::opts_knit$get("rmarkdown.pandoc.to")
 
@@ -1309,8 +1309,8 @@ knit_print.table1 <- function(x, ...) {
 
     if (knit_to_html) {
         x <- htmltools::HTML(x)
-        default.style <- htmltools::htmlDependency("table1", "1.0",
-            src=system.file(package="table1", "table1_defaults_1.0"),
+        default.style <- htmltools::htmlDependency("table1butbetter", "1.0",
+            src=system.file(package="table1butbetter", "table1_defaults_1.0"),
             stylesheet="table1_defaults.css")
         x <- htmltools::div(class="Rtable1", default.style, x)
         knitr::knit_print(x, ...)
@@ -1319,7 +1319,7 @@ knit_print.table1 <- function(x, ...) {
         if (requireNamespace("kableExtra", quietly = TRUE)) {
             knitr::knit_print(t1kable(x), ...)
         } else {
-            message("Get nicer `table1` LaTeX output by simply installing the `kableExtra` package")
+            message("Get nicer `table1butbetter` LaTeX output by simply installing the `kableExtra` package")
             knitr::knit_print(knitr::kable(as.data.frame(x), booktabs=TRUE), ...)
         }
     } else if (knit_to_docx) {
@@ -1327,7 +1327,7 @@ knit_print.table1 <- function(x, ...) {
         if (requireNamespace("flextable", quietly = TRUE)) {
             knitr::knit_print(t1flex(x), ...)
         } else {
-            message("Get nicer `table1` .docx output by simply installing the `flextable` package")
+            message("Get nicer `table1butbetter` .docx output by simply installing the `flextable` package")
             knitr::knit_print(as.data.frame(x), ...)
         }
     } else {
@@ -1336,11 +1336,11 @@ knit_print.table1 <- function(x, ...) {
     }
 }
 
-#' @describeIn table1 The \code{formula} interface.
+#' @describeIn table1butbetter The \code{formula} interface.
 #' @export
 #' @importFrom stats formula model.frame na.pass terms
 #' @importFrom Formula Formula
-table1.formula <- function(x, data, overall="Overall", rowlabelhead="", transpose=FALSE, droplevels=TRUE, topclass="Rtable1", footnote=NULL, caption=NULL, render=render.default, render.strat=render.strat.default, extra.col=NULL, extra.col.pos=NULL, ...) {
+table1butbetter.formula <- function(x, data, overall="Overall", rowlabelhead="", transpose=FALSE, droplevels=TRUE, topclass="Rtable1", footnote=NULL, caption=NULL, render=render.default, render.strat=render.strat.default, extra.col=NULL, extra.col.pos=NULL, ...) {
     f <- Formula(x)
     if (length(length(f)) != 2 || length(f)[2] < 1 || length(f)[2] > 2) {
         stop(paste0("Invalid formula: ", paste0(x, collapse="")))
@@ -1349,7 +1349,7 @@ table1.formula <- function(x, data, overall="Overall", rowlabelhead="", transpos
         stop("overall should have length 1 (unless NULL)")
     }
     if (length(f)[1] > 0) {
-        warning("Unexpected LHS in formula ignored (table1 expects a 1-sided formula)")
+        warning("Unexpected LHS in formula ignored (table1butbetter expects a 1-sided formula)")
     }
     if (length(f)[2] == 2) {
         f2 <- formula(f)
@@ -1455,7 +1455,7 @@ table1.formula <- function(x, data, overall="Overall", rowlabelhead="", transpos
 
     if (!is.null(m2) && length(m2) > 1) {
         labels$groups <- grouplabel
-        table1.default(
+        table1butbetter.default(
             x             = strata,
             labels        = labels,
             groupspan     = groupspan,
@@ -1469,7 +1469,7 @@ table1.formula <- function(x, data, overall="Overall", rowlabelhead="", transpos
             extra.col     = extra.col,
             extra.col.pos = extra.col.pos, ...)
     } else {
-        table1.default(
+        table1butbetter.default(
             x             = strata,
             labels        = labels,
             rowlabelhead  = rowlabelhead,

@@ -1,4 +1,4 @@
-Package: table1
+Package: table1butbetter
 Type: Package
 Version: 1.4.4
 Date: 2023-04-23
@@ -6,8 +6,8 @@ Title: Tables of Descriptive Statistics in HTML
 Authors@R: person("Benjamin", "Rich", role=c("aut", "cre", "cph"), email="mail@benjaminrich.net")
 Author: Benjamin Rich [aut, cre, cph]
 Maintainer: Benjamin Rich <mail@benjaminrich.net>
-URL: https://github.com/benjaminrich/table1
-BugReports: https://github.com/benjaminrich/table1/issues
+URL: https://github.com/benjaminrich/table1butbetter
+BugReports: https://github.com/benjaminrich/table1butbetter/issues
 Description: Create HTML tables of descriptive statistics, as one would expect
     to see as the first table (i.e. "Table 1") in a medical/epidemiological journal
     article.
