@@ -649,8 +649,8 @@ render.strat.default <- function(label, n, transpose=F) {
 #' cat(table.rows(LETTERS[1:3], "Headings", th=TRUE))
 #' @keywords utilities
 #' @export
-table.rows <- function(x, row.labels=rownames(x), th=FALSE, class=NULL, rowlabelclass="rowlabel", firstrowclass="firstrow", lastrowclass="lastrow", ...) {
-    if (is.null(row.labels)) row.labels <- ""
+table.rows <- function(x, row.labels=rownames(x), th=FALSE, class=NULL, rowlabelclass="rowlabel", firstrowclass="firstrow", lastrowclass="lastrow", hide_row_labels=FALSE, ...) {
+    if (hide_row_labels) row.labels <- NULL
     td <- table.data(x=x, row.labels=row.labels, th=th, class=class, rowlabelclass=rowlabelclass, firstrowclass=firstrowclass, lastrowclass=lastrowclass, ...)
     tr <- paste("<tr>\n", td, "\n</tr>\n", sep="")
     paste(tr, sep="", collapse="")
@@ -658,8 +658,9 @@ table.rows <- function(x, row.labels=rownames(x), th=FALSE, class=NULL, rowlabel
 
 #' @describeIn table.rows Convert to HTML table data (cells).
 #' @export
-table.data <- function(x, row.labels=rownames(x), th=FALSE, class=NULL, rowlabelclass="rowlabel", firstrowclass="firstrow", lastrowclass="lastrow", ...) {
+table.data <- function(x, row.labels=rownames(x), th=FALSE, class=NULL, rowlabelclass="rowlabel", firstrowclass="firstrow", lastrowclass="lastrow", hide_row_labels=FALSE, ...) {
     tag <- ifelse(th, "th", "td")
+    if (hide_row_labels) row.labels <- NULL
     rl <- row.labels  # Make sure it gets evaluated early for default arg
     if (is.data.frame(x)) {
         x <- sapply(x, as.character)
@@ -696,6 +697,7 @@ table.data <- function(x, row.labels=rownames(x), th=FALSE, class=NULL, rowlabel
     dim(td) <- dim(x)
     apply(td, 1, paste, collapse="\n")
 }
+
 
 
 #' Label attribute.
